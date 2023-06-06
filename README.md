@@ -12,4 +12,4 @@ This repository contains resources for modeling IWXXM-SX, transforming it into X
 
 # See Also
 
-[IWXXM-SX XML/GML schemas and schematrons on GitHub](https://github.com/blchoy/iwxxm-sx)
+[IWXXM-SX XML/GML schemas and schematrons on GitHub](https://github.com/team-sx/iwxxm-sx)
