@@ -349,11 +349,6 @@
 				<xsl:with-param name="ref" select="'aixm:AirportHeliport'"/>
 			</xsl:call-template>
 			<xsl:call-template name="propertyType">
-				<xsl:with-param name="name" select="'RunwayPropertyType'"/>
-				<xsl:with-param name="base" select="'aixm:AbstractAIXMFeatureType'"/>
-				<xsl:with-param name="ref" select="'aixm:Runway'"/>
-			</xsl:call-template>
-			<xsl:call-template name="propertyType">
 				<xsl:with-param name="name" select="'RunwayDirectionPropertyType'"/>
 				<xsl:with-param name="base" select="'aixm:AbstractAIXMFeatureType'"/>
 				<xsl:with-param name="ref" select="'aixm:RunwayDirection'"/>
@@ -474,28 +469,6 @@
 	<!-- Attributes manipulation fragment from external XSLT AttributeNotesFromXMI_IWXXM.xslt -->
 	<!-- Start -->
    <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
-                 match="xs:complexType[@name='VolcanoType']//xs:sequence/xs:element[@name='name']">
-      <xsl:param name="typeName" select="@type"/>
-      <xsl:element name="{local-name()}">
-         <xsl:attribute name="nillable">
-            <xsl:value-of select="'true'"/>
-         </xsl:attribute>
-         <xsl:apply-templates select="@*|node()"/>
-      </xsl:element>
-   </xsl:template>
-   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
-                 match="xs:complexType[@name='VolcanoType']//xs:attribute[@name='name']">
-      <xsl:element name="{local-name()}">
-         <xsl:attribute name="use">
-            <xsl:value-of select="'required'"/>
-         </xsl:attribute>
-         <xsl:apply-templates select="@*|node()"/>
-         <xsl:element name="annotation">
-            <xsl:element name="documentation">Name of the volcano.</xsl:element>
-         </xsl:element>
-      </xsl:element>
-   </xsl:template>
-   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
                  match="xs:complexType[@name='RadiationIncidentType']//xs:sequence/xs:element[@name='siteName']">
       <xsl:param name="typeName" select="@type"/>
       <xsl:element name="{local-name()}">
@@ -533,28 +506,6 @@
          <xsl:apply-templates select="@*|node()"/>
          <xsl:element name="annotation">
             <xsl:element name="documentation">Incident time.</xsl:element>
-         </xsl:element>
-      </xsl:element>
-   </xsl:template>
-   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
-                 match="xs:complexType[@name='TropicalCycloneType']//xs:sequence/xs:element[@name='name']">
-      <xsl:param name="typeName" select="@type"/>
-      <xsl:element name="{local-name()}">
-         <xsl:attribute name="nillable">
-            <xsl:value-of select="'true'"/>
-         </xsl:attribute>
-         <xsl:apply-templates select="@*|node()"/>
-      </xsl:element>
-   </xsl:template>
-   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
-                 match="xs:complexType[@name='TropicalCycloneType']//xs:attribute[@name='name']">
-      <xsl:element name="{local-name()}">
-         <xsl:attribute name="use">
-            <xsl:value-of select="'required'"/>
-         </xsl:attribute>
-         <xsl:apply-templates select="@*|node()"/>
-         <xsl:element name="annotation">
-            <xsl:element name="documentation">Name of the tropical cyclone.</xsl:element>
          </xsl:element>
       </xsl:element>
    </xsl:template>
@@ -739,6 +690,575 @@ Wind speeds shall be provided in unit of measurer "m/s" (meters per second).</xs
                   <xsl:value-of select="'Extension block for optional and/or additional parameters for element WAFSSignificantWeatherForecast'"/>
                </xsl:element>
             </xsl:element>
+         </xsl:element>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='QuantitativeVolcanicAshConcentrationInformationType']//xs:sequence/xs:element[@name='dispersionModelInitialisationTime']">
+      <xsl:param name="typeName" select="@type"/>
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='QuantitativeVolcanicAshConcentrationInformationType']//xs:attribute[@name='dispersionModelInitialisationTime']">
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+         <xsl:element name="annotation">
+            <xsl:element name="documentation">Start of model forecast integration time.</xsl:element>
+         </xsl:element>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='QuantitativeVolcanicAshConcentrationInformationType']//xs:sequence/xs:element[@name='dispersionModelSourceElevation']">
+      <xsl:param name="typeName" select="@type"/>
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='QuantitativeVolcanicAshConcentrationInformationType']//xs:attribute[@name='dispersionModelSourceElevation']">
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+         <xsl:element name="annotation">
+            <xsl:element name="documentation">Elevation of erupting ash vent or fissure used in the dispersion model, not necessarily volcano's summit height, in meters ("m") or feet ("[ft_i]"). Use negative values to represent levels below mean sea level.</xsl:element>
+         </xsl:element>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='QuantitativeVolcanicAshConcentrationInformationType']//xs:sequence/xs:element[@name='dispersionModelAshCloudHeight']">
+      <xsl:param name="typeName" select="@type"/>
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='QuantitativeVolcanicAshConcentrationInformationType']//xs:attribute[@name='dispersionModelAshCloudHeight']">
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+         <xsl:element name="annotation">
+            <xsl:element name="documentation">Maximum height of ash cloud or eruption column at initialisation time in meters ("m") or feet ("[ft_i]"). Use negative values to represent levels below mean sea level.</xsl:element>
+         </xsl:element>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanicAshCloudConcentrationType']//xs:sequence/xs:element[@name='ashDensityCategory']">
+      <xsl:param name="typeName" select="@type"/>
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanicAshCloudConcentrationType']//xs:attribute[@name='ashDensityCategory']">
+      <xsl:element name="{local-name()}">
+         <xsl:attribute name="use">
+            <xsl:value-of select="'required'"/>
+         </xsl:attribute>
+         <xsl:apply-templates select="@*|node()"/>
+         <xsl:element name="annotation">
+            <xsl:element name="documentation">Categorical description of ash density within the cloud.</xsl:element>
+         </xsl:element>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanicAshCloudConcentrationType']//xs:sequence/xs:element[@name='ashDensityEqualsOrExceeds']">
+      <xsl:param name="typeName" select="@type"/>
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanicAshCloudConcentrationType']//xs:attribute[@name='ashDensityEqualsOrExceeds']">
+      <xsl:element name="{local-name()}">
+         <xsl:attribute name="use">
+            <xsl:value-of select="'required'"/>
+         </xsl:attribute>
+         <xsl:apply-templates select="@*|node()"/>
+         <xsl:element name="annotation">
+            <xsl:element name="documentation">Quantitative threshold of ash density within the cloud.</xsl:element>
+         </xsl:element>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanicAshCloudVerticalExtentType']//xs:sequence/xs:element[@name='heightSource']">
+      <xsl:param name="typeName" select="@type"/>
+      <xsl:element name="{local-name()}">
+         <xsl:attribute name="nillable">
+            <xsl:value-of select="'true'"/>
+         </xsl:attribute>
+         <xsl:apply-templates select="@*|node()"/>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanicAshCloudVerticalExtentType']//xs:attribute[@name='heightSource']">
+      <xsl:element name="{local-name()}">
+         <xsl:attribute name="use">
+            <xsl:value-of select="'required'"/>
+         </xsl:attribute>
+         <xsl:apply-templates select="@*|node()"/>
+         <xsl:element name="annotation">
+            <xsl:element name="documentation">Source of height data (e.g. ground observer, air-report, radar, LIDAR, satellite, webcam, etc.).</xsl:element>
+         </xsl:element>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanicAshCloudVerticalExtentType']//xs:sequence/xs:element[@name='movement']">
+      <xsl:param name="typeName" select="@type"/>
+      <xsl:element name="{local-name()}">
+         <xsl:attribute name="nillable">
+            <xsl:value-of select="'true'"/>
+         </xsl:attribute>
+         <xsl:apply-templates select="@*|node()"/>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanicAshCloudVerticalExtentType']//xs:attribute[@name='movement']">
+      <xsl:element name="{local-name()}">
+         <xsl:attribute name="use">
+            <xsl:value-of select="'required'"/>
+         </xsl:attribute>
+         <xsl:apply-templates select="@*|node()"/>
+         <xsl:element name="annotation">
+            <xsl:element name="documentation">Direction of movement of the observed cloud.</xsl:element>
+         </xsl:element>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='AviationColourCodeType']//xs:sequence/xs:element[@name='GREEN']">
+      <xsl:param name="typeName" select="@type"/>
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='AviationColourCodeType']//xs:attribute[@name='GREEN']">
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+         <xsl:element name="annotation">
+            <xsl:element name="documentation">Green.</xsl:element>
+         </xsl:element>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='AviationColourCodeType']//xs:sequence/xs:element[@name='YELLOW']">
+      <xsl:param name="typeName" select="@type"/>
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='AviationColourCodeType']//xs:attribute[@name='YELLOW']">
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+         <xsl:element name="annotation">
+            <xsl:element name="documentation">Yellow.</xsl:element>
+         </xsl:element>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='AviationColourCodeType']//xs:sequence/xs:element[@name='ORANGE']">
+      <xsl:param name="typeName" select="@type"/>
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='AviationColourCodeType']//xs:attribute[@name='ORANGE']">
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+         <xsl:element name="annotation">
+            <xsl:element name="documentation">Orange.</xsl:element>
+         </xsl:element>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='AviationColourCodeType']//xs:sequence/xs:element[@name='RED']">
+      <xsl:param name="typeName" select="@type"/>
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='AviationColourCodeType']//xs:attribute[@name='RED']">
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+         <xsl:element name="annotation">
+            <xsl:element name="documentation">Red.</xsl:element>
+         </xsl:element>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='AviationColourCodeType']//xs:sequence/xs:element[@name='UNASSIGNED']">
+      <xsl:param name="typeName" select="@type"/>
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='AviationColourCodeType']//xs:attribute[@name='UNASSIGNED']">
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+         <xsl:element name="annotation">
+            <xsl:element name="documentation">Unassigned.</xsl:element>
+         </xsl:element>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanoObservatoryNoticeForAviationType']//xs:sequence">
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+         <xsl:element name="element">
+            <xsl:attribute name="name">
+               <xsl:value-of select="'extension'"/>
+            </xsl:attribute>
+            <xsl:attribute name="type">
+               <xsl:value-of select="'iwxxm:ExtensionType'"/>
+            </xsl:attribute>
+            <xsl:attribute name="minOccurs">
+               <xsl:value-of select="'0'"/>
+            </xsl:attribute>
+            <xsl:attribute name="maxOccurs">
+               <xsl:value-of select="'unbounded'"/>
+            </xsl:attribute>
+            <xsl:element name="annotation">
+               <xsl:element name="documentation">
+                  <xsl:value-of select="'Extension block for optional and/or additional parameters for element VolcanoObservatoryNoticeForAviation'"/>
+               </xsl:element>
+            </xsl:element>
+         </xsl:element>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanoObservatoryNoticeForAviationType']//xs:sequence/xs:element[@name='stateOrRegion']">
+      <xsl:param name="typeName" select="@type"/>
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanoObservatoryNoticeForAviationType']//xs:attribute[@name='stateOrRegion']">
+      <xsl:element name="{local-name()}">
+         <xsl:attribute name="use">
+            <xsl:value-of select="'required'"/>
+         </xsl:attribute>
+         <xsl:apply-templates select="@*|node()"/>
+         <xsl:element name="annotation">
+            <xsl:element name="documentation">State or region involved.</xsl:element>
+         </xsl:element>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanoObservatoryNoticeForAviationType']//xs:sequence/xs:element[@name='noticeNumber']">
+      <xsl:param name="typeName" select="@type"/>
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanoObservatoryNoticeForAviationType']//xs:attribute[@name='noticeNumber']">
+      <xsl:element name="{local-name()}">
+         <xsl:attribute name="use">
+            <xsl:value-of select="'required'"/>
+         </xsl:attribute>
+         <xsl:apply-templates select="@*|node()"/>
+         <xsl:element name="annotation">
+            <xsl:element name="documentation">VONA Notice Number.</xsl:element>
+         </xsl:element>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanoObservatoryNoticeForAviationType']//xs:sequence/xs:element[@name='currentColourCode']">
+      <xsl:param name="typeName" select="@type"/>
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanoObservatoryNoticeForAviationType']//xs:attribute[@name='currentColourCode']">
+      <xsl:element name="{local-name()}">
+         <xsl:attribute name="use">
+            <xsl:value-of select="'required'"/>
+         </xsl:attribute>
+         <xsl:apply-templates select="@*|node()"/>
+         <xsl:element name="annotation">
+            <xsl:element name="documentation">Current aviation colour code.</xsl:element>
+         </xsl:element>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanoObservatoryNoticeForAviationType']//xs:sequence/xs:element[@name='previousColourCode']">
+      <xsl:param name="typeName" select="@type"/>
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanoObservatoryNoticeForAviationType']//xs:attribute[@name='previousColourCode']">
+      <xsl:element name="{local-name()}">
+         <xsl:attribute name="use">
+            <xsl:value-of select="'required'"/>
+         </xsl:attribute>
+         <xsl:apply-templates select="@*|node()"/>
+         <xsl:element name="annotation">
+            <xsl:element name="documentation">Previous aviation colour code.</xsl:element>
+         </xsl:element>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanoObservatoryNoticeForAviationType']//xs:sequence/xs:element[@name='contacts']">
+      <xsl:param name="typeName" select="@type"/>
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanoObservatoryNoticeForAviationType']//xs:attribute[@name='contacts']">
+      <xsl:element name="{local-name()}">
+         <xsl:attribute name="use">
+            <xsl:value-of select="'required'"/>
+         </xsl:attribute>
+         <xsl:apply-templates select="@*|node()"/>
+         <xsl:element name="annotation">
+            <xsl:element name="documentation">State Volcano Observatory (SVO) contact details.</xsl:element>
+         </xsl:element>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanoObservatoryNoticeForAviationType']//xs:sequence/xs:element[@name='remarks']">
+      <xsl:param name="typeName" select="@type"/>
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanoObservatoryNoticeForAviationType']//xs:attribute[@name='remarks']">
+      <xsl:element name="{local-name()}">
+         <xsl:attribute name="use">
+            <xsl:value-of select="'required'"/>
+         </xsl:attribute>
+         <xsl:apply-templates select="@*|node()"/>
+         <xsl:element name="annotation">
+            <xsl:element name="documentation">Remarks.</xsl:element>
+         </xsl:element>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanoObservatoryNoticeForAviationType']//xs:sequence/xs:element[@name='nextNotice']">
+      <xsl:param name="typeName" select="@type"/>
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanoObservatoryNoticeForAviationType']//xs:attribute[@name='nextNotice']">
+      <xsl:element name="{local-name()}">
+         <xsl:attribute name="use">
+            <xsl:value-of select="'required'"/>
+         </xsl:attribute>
+         <xsl:apply-templates select="@*|node()"/>
+         <xsl:element name="annotation">
+            <xsl:element name="documentation">Indication of the issuance of next VONA.</xsl:element>
+         </xsl:element>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='ResuspendedVolcanicAshType']//xs:sequence/xs:element[@name='height']">
+      <xsl:param name="typeName" select="@type"/>
+      <xsl:element name="{local-name()}">
+         <xsl:attribute name="nillable">
+            <xsl:value-of select="'true'"/>
+         </xsl:attribute>
+         <xsl:apply-templates select="@*|node()"/>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='ResuspendedVolcanicAshType']//xs:attribute[@name='height']">
+      <xsl:element name="{local-name()}">
+         <xsl:attribute name="use">
+            <xsl:value-of select="'required'"/>
+         </xsl:attribute>
+         <xsl:apply-templates select="@*|node()"/>
+         <xsl:element name="annotation">
+            <xsl:element name="documentation">Average height of re-suspended volcanic ash field.
+
+When the height is UNKNOWN, </xsl:element>
+         </xsl:element>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanicAshCloudMovementType']//xs:sequence/xs:element[@name='N']">
+      <xsl:param name="typeName" select="@type"/>
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanicAshCloudMovementType']//xs:attribute[@name='N']">
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+         <xsl:element name="annotation">
+            <xsl:element name="documentation">North.</xsl:element>
+         </xsl:element>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanicAshCloudMovementType']//xs:sequence/xs:element[@name='NE']">
+      <xsl:param name="typeName" select="@type"/>
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanicAshCloudMovementType']//xs:attribute[@name='NE']">
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+         <xsl:element name="annotation">
+            <xsl:element name="documentation">Northeast.</xsl:element>
+         </xsl:element>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanicAshCloudMovementType']//xs:sequence/xs:element[@name='E']">
+      <xsl:param name="typeName" select="@type"/>
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanicAshCloudMovementType']//xs:attribute[@name='E']">
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+         <xsl:element name="annotation">
+            <xsl:element name="documentation">East.</xsl:element>
+         </xsl:element>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanicAshCloudMovementType']//xs:sequence/xs:element[@name='SE']">
+      <xsl:param name="typeName" select="@type"/>
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanicAshCloudMovementType']//xs:attribute[@name='SE']">
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+         <xsl:element name="annotation">
+            <xsl:element name="documentation">Southeast.
+</xsl:element>
+         </xsl:element>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanicAshCloudMovementType']//xs:sequence/xs:element[@name='S']">
+      <xsl:param name="typeName" select="@type"/>
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanicAshCloudMovementType']//xs:attribute[@name='S']">
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+         <xsl:element name="annotation">
+            <xsl:element name="documentation">South.</xsl:element>
+         </xsl:element>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanicAshCloudMovementType']//xs:sequence/xs:element[@name='SW']">
+      <xsl:param name="typeName" select="@type"/>
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanicAshCloudMovementType']//xs:attribute[@name='SW']">
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+         <xsl:element name="annotation">
+            <xsl:element name="documentation">Southwest.</xsl:element>
+         </xsl:element>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanicAshCloudMovementType']//xs:sequence/xs:element[@name='W']">
+      <xsl:param name="typeName" select="@type"/>
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanicAshCloudMovementType']//xs:attribute[@name='W']">
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+         <xsl:element name="annotation">
+            <xsl:element name="documentation">West.</xsl:element>
+         </xsl:element>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanicAshCloudMovementType']//xs:sequence/xs:element[@name='NW']">
+      <xsl:param name="typeName" select="@type"/>
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanicAshCloudMovementType']//xs:attribute[@name='NW']">
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+         <xsl:element name="annotation">
+            <xsl:element name="documentation">Northwest.</xsl:element>
+         </xsl:element>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanicAshCloudMovementType']//xs:sequence/xs:element[@name='VERTICAL']">
+      <xsl:param name="typeName" select="@type"/>
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanicAshCloudMovementType']//xs:attribute[@name='VERTICAL']">
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+         <xsl:element name="annotation">
+            <xsl:element name="documentation">Vertical.</xsl:element>
+         </xsl:element>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanicAshCloudMovementType']//xs:sequence/xs:element[@name='OBSCURED']">
+      <xsl:param name="typeName" select="@type"/>
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanicAshCloudMovementType']//xs:attribute[@name='OBSCURED']">
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+         <xsl:element name="annotation">
+            <xsl:element name="documentation">Obscured.</xsl:element>
+         </xsl:element>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanicAshCloudMovementType']//xs:sequence/xs:element[@name='UNKNOWN']">
+      <xsl:param name="typeName" select="@type"/>
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanicAshCloudMovementType']//xs:attribute[@name='UNKNOWN']">
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+         <xsl:element name="annotation">
+            <xsl:element name="documentation">Unknown.</xsl:element>
          </xsl:element>
       </xsl:element>
    </xsl:template>
@@ -1201,6 +1721,136 @@ When iwxxm:phenomenonCategory="weatherForecasts" it is the forecast time of the 
       </xsl:element>
    </xsl:template>
    <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanoType']//xs:sequence/xs:element[@name='name']">
+      <xsl:param name="typeName" select="@type"/>
+      <xsl:element name="{local-name()}">
+         <xsl:attribute name="nillable">
+            <xsl:value-of select="'true'"/>
+         </xsl:attribute>
+         <xsl:apply-templates select="@*|node()"/>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanoType']//xs:attribute[@name='name']">
+      <xsl:element name="{local-name()}">
+         <xsl:attribute name="use">
+            <xsl:value-of select="'required'"/>
+         </xsl:attribute>
+         <xsl:apply-templates select="@*|node()"/>
+         <xsl:element name="annotation">
+            <xsl:element name="documentation">Name of the Volcano.
+
+When the name is unknown, it shall be represented with a nil in name and nilReason 'http://codes.wmo.int/common/nil/unknown'.</xsl:element>
+         </xsl:element>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanoType']//xs:sequence/xs:element[@name='IAVCEINumber']">
+      <xsl:param name="typeName" select="@type"/>
+      <xsl:element name="{local-name()}">
+         <xsl:attribute name="nillable">
+            <xsl:value-of select="'true'"/>
+         </xsl:attribute>
+         <xsl:apply-templates select="@*|node()"/>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanoType']//xs:attribute[@name='IAVCEINumber']">
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+         <xsl:element name="annotation">
+            <xsl:element name="documentation">International Association of Volcanology and Chemistry of the Earth's Interior (IAVCEI) number of the volcano.
+
+When the IAVCEI number is unknown, it shall be represented with a nil in IAVCEINumber and nilReason 'http://codes.wmo.int/common/nil/unknown'.</xsl:element>
+         </xsl:element>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanoType']//xs:sequence/xs:element[@name='sourceElevation']">
+      <xsl:param name="typeName" select="@type"/>
+      <xsl:element name="{local-name()}">
+         <xsl:attribute name="nillable">
+            <xsl:value-of select="'true'"/>
+         </xsl:attribute>
+         <xsl:apply-templates select="@*|node()"/>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanoType']//xs:attribute[@name='sourceElevation']">
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+         <xsl:element name="annotation">
+            <xsl:element name="documentation">Elevation of the vent of the volcano from mean sea level.  If reported it shall either be in meters ("m") or feet ("[ft_i]"). Use negative values to represent levels below mean sea level.
+
+When the elevation is unknown, it shall be represented with a nil in sourceElevation and nilReason 'http://codes.wmo.int/common/nil/unknown'.</xsl:element>
+         </xsl:element>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanoType']//xs:sequence/xs:element[@name='activityStatus']">
+      <xsl:param name="typeName" select="@type"/>
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanoType']//xs:attribute[@name='activityStatus']">
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+         <xsl:element name="annotation">
+            <xsl:element name="documentation">Description of current activity status of the volcano.</xsl:element>
+         </xsl:element>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanoType']//xs:sequence/xs:element[@name='lastVolcanicAshEmission']">
+      <xsl:param name="typeName" select="@type"/>
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanoType']//xs:attribute[@name='lastVolcanicAshEmission']">
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+         <xsl:element name="annotation">
+            <xsl:element name="documentation">Time of last volcanic ash emission.</xsl:element>
+         </xsl:element>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanoType']//xs:sequence/xs:element[@name='onsetTime']">
+      <xsl:param name="typeName" select="@type"/>
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanoType']//xs:attribute[@name='onsetTime']">
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+         <xsl:element name="annotation">
+            <xsl:element name="documentation">Time of onset of eruptive activity.</xsl:element>
+         </xsl:element>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanoType']//xs:sequence/xs:element[@name='duration']">
+      <xsl:param name="typeName" select="@type"/>
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanoType']//xs:attribute[@name='duration']">
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+         <xsl:element name="annotation">
+            <xsl:element name="documentation">Duration of volcanic ash producing eruption.</xsl:element>
+         </xsl:element>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
                  match="xs:complexType[@name='ElevatedEnvelopeType']//xs:sequence/xs:element[@name='upperElevation']">
       <xsl:param name="typeName" select="@type"/>
       <xsl:element name="{local-name()}">
@@ -1447,7 +2097,7 @@ When iwxxm:phenomenonCategory="weatherForecasts" it is the forecast time of the 
       <xsl:element name="{local-name()}">
          <xsl:apply-templates select="@*|node()"/>
          <xsl:element name="annotation">
-            <xsl:element name="documentation">Weather Observations</xsl:element>
+            <xsl:element name="documentation">Weather Observations.</xsl:element>
          </xsl:element>
       </xsl:element>
    </xsl:template>
@@ -1464,6 +2114,156 @@ When iwxxm:phenomenonCategory="weatherForecasts" it is the forecast time of the 
          <xsl:apply-templates select="@*|node()"/>
          <xsl:element name="annotation">
             <xsl:element name="documentation">Weather Forecasts.</xsl:element>
+         </xsl:element>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='WMOCategoryCodeType']//xs:sequence/xs:element[@name='volcanicObservations']">
+      <xsl:param name="typeName" select="@type"/>
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='WMOCategoryCodeType']//xs:attribute[@name='volcanicObservations']">
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+         <xsl:element name="annotation">
+            <xsl:element name="documentation">Volcanic Observations.</xsl:element>
+         </xsl:element>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='WMOCategoryCodeType']//xs:sequence/xs:element[@name='volcanicForecasts']">
+      <xsl:param name="typeName" select="@type"/>
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='WMOCategoryCodeType']//xs:attribute[@name='volcanicForecasts']">
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+         <xsl:element name="annotation">
+            <xsl:element name="documentation">Volcanic Forecasts.</xsl:element>
+         </xsl:element>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanoActivityStatusType']//xs:sequence/xs:element[@name='ERUPTION_OCCURRED']">
+      <xsl:param name="typeName" select="@type"/>
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanoActivityStatusType']//xs:attribute[@name='ERUPTION_OCCURRED']">
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+         <xsl:element name="annotation">
+            <xsl:element name="documentation">Eruption occurred.</xsl:element>
+         </xsl:element>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanoActivityStatusType']//xs:sequence/xs:element[@name='ERUPTION_ONGOING']">
+      <xsl:param name="typeName" select="@type"/>
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanoActivityStatusType']//xs:attribute[@name='ERUPTION_ONGOING']">
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+         <xsl:element name="annotation">
+            <xsl:element name="documentation">Eruption ongoing.</xsl:element>
+         </xsl:element>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanoActivityStatusType']//xs:sequence/xs:element[@name='HEIGHTENED_UNREST']">
+      <xsl:param name="typeName" select="@type"/>
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanoActivityStatusType']//xs:attribute[@name='HEIGHTENED_UNREST']">
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+         <xsl:element name="annotation">
+            <xsl:element name="documentation">Heightened unrest.</xsl:element>
+         </xsl:element>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanoActivityStatusType']//xs:sequence/xs:element[@name='DECREASED_ACTIVITY']">
+      <xsl:param name="typeName" select="@type"/>
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanoActivityStatusType']//xs:attribute[@name='DECREASED_ACTIVITY']">
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+         <xsl:element name="annotation">
+            <xsl:element name="documentation">Decreased activity.</xsl:element>
+         </xsl:element>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanoActivityStatusType']//xs:sequence/xs:element[@name='UNKNOWN']">
+      <xsl:param name="typeName" select="@type"/>
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanoActivityStatusType']//xs:attribute[@name='UNKNOWN']">
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+         <xsl:element name="annotation">
+            <xsl:element name="documentation">Unknown.</xsl:element>
+         </xsl:element>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanoActivityStatusType']//xs:sequence/xs:element[@name='NIL']">
+      <xsl:param name="typeName" select="@type"/>
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='VolcanoActivityStatusType']//xs:attribute[@name='NIL']">
+      <xsl:element name="{local-name()}">
+         <xsl:apply-templates select="@*|node()"/>
+         <xsl:element name="annotation">
+            <xsl:element name="documentation">Nil.</xsl:element>
+         </xsl:element>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='TropicalCycloneType']//xs:sequence/xs:element[@name='name']">
+      <xsl:param name="typeName" select="@type"/>
+      <xsl:element name="{local-name()}">
+         <xsl:attribute name="nillable">
+            <xsl:value-of select="'true'"/>
+         </xsl:attribute>
+         <xsl:apply-templates select="@*|node()"/>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 match="xs:complexType[@name='TropicalCycloneType']//xs:attribute[@name='name']">
+      <xsl:element name="{local-name()}">
+         <xsl:attribute name="use">
+            <xsl:value-of select="'required'"/>
+         </xsl:attribute>
+         <xsl:apply-templates select="@*|node()"/>
+         <xsl:element name="annotation">
+            <xsl:element name="documentation">Name of the tropical cyclone.</xsl:element>
          </xsl:element>
       </xsl:element>
    </xsl:template>
